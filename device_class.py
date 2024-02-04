@@ -34,8 +34,8 @@ class Device:
                 random_number = random.randint(1, 100)
                 frame = write_frame(1, 0, self.id_can, [random_number])
                 client_socket.send(str(frame).encode())
-                print("Send frame to app: ", frame)
-                time.sleep(1)
+                print(f"Send frame to app: {frame}")
+                time.sleep(1)  # Here it should normally be about 1/10
 
         except Exception as e:
             print(f"Error while sending: {e}")

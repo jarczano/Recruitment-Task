@@ -75,7 +75,7 @@ async def watchdog(port, can_id, host='127.0.0.1'):
             frame = str(write_frame(1, 0, can_id, [watchdog_tag]))  # extended and data frame
             writer.write(frame.encode())
             await writer.drain()
-            await asyncio.sleep(1)
+            await asyncio.sleep(1)  # Here it should be about <0.5
     except Exception as e:
         print(f"Error: {e}")
     finally:
@@ -103,14 +103,20 @@ async def send_message(port, data_message, can_id, host='127.0.0.1'):
     frame = str(write_frame(1, 0, can_id, data_message))  # create a proper frame
     writer.write(frame.encode())
     await writer.drain()
-    await asyncio.sleep(1)
+
+
+async def monitor_c_result():
+    while True:
+        print("Module C result: ", module.result)
+        await asyncio.sleep(1)
 
 
 @app.on_event("startup")
 async def startup_event():  # Runs tcp_client, watchdog as a background task
     asyncio.create_task(tcp_client(port=12345, device='a'))  # Listen to the device A
     asyncio.create_task(tcp_client(port=12346, device='b'))  # Listen to the device B
-    asyncio.create_task(watchdog(port=12346))
+    asyncio.create_task(watchdog(port=12346, can_id=[0x12, 0x34, 0x56, 0x78]))
+    asyncio.create_task(monitor_c_result())
 
 
 @app.on_event("shutdown")
