@@ -3,7 +3,7 @@
 ## Introduction
 The CAN-TCP Monitor project involves emulating two devices, A and B, which communicate with a FastAPI application through CAN-TCP gateways. Devices A and B report their operational status by transmitting random numbers to the application for monitoring purposes and perform operations on the data. The system also allows sending commands to device B.  
 
-![image_CANTCP](https://github.com/jarczano/Recruitment-Task/assets/107764304/f178fc14-0559-4a17-9d4f-52ec62010f5e)
+![image_CANTCP](https://github.com/jarczano/Recruitment-Task/assets/107764304/229380ec-e24d-4dbb-b169-41bd9792144f)  
 Overview drawing of CAN-TCP network with one gateway  
 
 ### Key Features
