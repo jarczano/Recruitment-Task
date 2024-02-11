@@ -9,6 +9,9 @@ Overview drawing of CAN-TCP network with one gateway
 ### Key Features
 - **Data Monitoring:** The application enables tracking of data transmitted from devices A and B, as well as the values of operations performed by block C.
 - **Sending Commands:** Capability to send messages to device B.
+- **Web Interface:** Accessible web page providing a user interface for monitoring parameters and sending data to device B.
+
+![screen](https://github.com/jarczano/Recruitment-Task/assets/107764304/81237ae0-5f22-430e-9580-d2aa6b9236bc)
 
 ## Project File Structure
 
@@ -28,4 +31,8 @@ Overview drawing of CAN-TCP network with one gateway
 2. Run the emulation of device A: `python device_a.py`.
 3. Run the emulation of device B: `python device_b.py`.
 4. Start the application: `uvicorn main:app`.
+5. The application will be running at `http://localhost:8000`. Upon accessing this URL, a page showcasing the functionality of the application will be displayed.
+
+**Note:** This project requires Python version 3.10
+
 
