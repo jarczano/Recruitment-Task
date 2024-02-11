@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App CAN-TCP Monitor</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+
+</head>
+<body>
+<h1>CAN-TCP Monitor</h1>
+    <div id="device_a_container">
+        <p id="device_a_info">Device A: </p>
+        <p id="device_a_value"></p>
+    </div>
+
+    <div id="device_b_container">
+        <p id="device_b_info">Device B: </p>
+        <p id="device_b_value"></p>
+    </div>
+
+    <div id="device_c_container">
+        <p id="device_c_info">Module C result: </p>
+        <p id="device_c_value"></p>
+    </div>
+
+    <div id="device_communication_container">
+        <p id="send_message_info">Message to device B: </p>
+        <input type="text" id="message_value">
+        <button id="button_send">Send</button>
+    </div>
+
+    <script src="{{ url_for('static', path='script.js') }}"></script>
+
+
+</body>
+</html>

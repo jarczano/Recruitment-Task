@@ -31,8 +31,10 @@ class Device:
         try:
             while True:
                 #  for the task we send a random number
-                random_number = random.randint(1, 100)
+                random_number = random.randint(1, 10)
+
                 frame = write_frame(1, 0, self.id_can, [random_number])
+
                 client_socket.send(str(frame).encode())
                 print(f"Send frame to app: {frame}")
                 time.sleep(1)  # Here it should normally be about 1/10

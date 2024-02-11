@@ -1,0 +1,26 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin:5vh;
+    font-size: 3vh;
+    font-family: "Calibri";
+}
+h1{font-size:2.5em;}
+
+#device_a_container, #device_b_container, #device_c_container, #device_communication_container{
+  display: flex
+}
+
+p{margin: 10px;}
+
+#message_value{
+  width:25vw;
+  font-size:3vh;
+}
+
+#button_send{
+font-size:3vh;
+width: 5vw;
+font-family: "Calibri";
+}
