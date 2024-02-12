@@ -1,12 +1,11 @@
 import json
-import random
-
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.templating import Jinja2Templates
 import asyncio  # Imports asyncio for asynchronous programming
 from fastapi.staticfiles import StaticFiles
 from module_c import ModuleC
 from utils import write_frame, read_frame
+import websockets
 
 
 class StatusTracker:
@@ -136,6 +135,7 @@ async def monitor_c_result():
 
 @app.on_event("startup")
 async def startup_event():  # Runs tcp_client, watchdog as a background task
+    asyncio.create_task(first_websocket())
     asyncio.create_task(tcp_client(port=12345, device='a'))  # Listen to the device A
     asyncio.create_task(tcp_client(port=12346, device='b'))  # Listen to the device B
     asyncio.create_task(watchdog(port=12346, can_id=[0x12, 0x34, 0x56, 0x78]))
@@ -179,10 +179,15 @@ async def receive_message(websocket: WebSocket):
         await send_message(port=12346, data_message=[data], can_id=[0x12, 0x34, 0x56, 0x78])
 
 
+async def first_websocket():
+    async with websockets.connect("ws://localhost:8000/ws"):
+        pass
+
+
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
 
+    await websocket.accept()
     # Running two asynchronous functions simultaneously
     try:
         await asyncio.gather(
